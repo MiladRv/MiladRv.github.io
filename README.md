@@ -11,7 +11,8 @@ No build step, no dependencies.
 | `index.html` | The whole site (HTML + CSS + JS) |
 | `404.html` | Custom not-found page |
 | `.nojekyll` | Tells GitHub Pages to skip Jekyll processing |
-| `.gitignore` | Keeps `resume.pdf` out of the public repo (it contains a phone number) |
+| `resume.pdf` | Resume without a phone number (linked from the footer) |
+| `.gitignore` | Ignores editor/OS files |
 
 ## Preview locally
 
@@ -48,9 +49,8 @@ Don't create `CNAME` before you own the domain — it would break the default `g
 
 ## Resume file
 
-`resume.pdf` is git-ignored on purpose: it contains a personal phone number and the repo is public.
-To publish a resume, use a version without the phone number, then delete the `resume.pdf` line from `.gitignore`.
-Until then the footer's `resume.pdf` link will 404 on the live site — remove or change that link in `index.html` if you don't publish it.
+`resume.pdf` is a copy of the resume **with the phone number removed**, because the repo is public.
+Before replacing it with a newer version, make sure it doesn't contain a phone number or other private details.
 
 ## Contact form
 
