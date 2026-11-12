@@ -1,0 +1,7 @@
+# Contains a personal phone number. Remove this line only after you
+# decide to publish a resume publicly (ideally a version without the phone).
+resume.pdf
+
+.claude/
+.DS_Store
+Thumbs.db

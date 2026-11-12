@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Curious? Press ` (backtick) for a terminal. There are 12 secrets hidden in this page. Try the Konami code. -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Milad Rivandi — Senior .NET Backend Engineer</title>
+<meta name="description" content="Milad Rivandi — Senior .NET Backend Engineer. Portfolio served as a running API.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0d12'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%236dffb0'%3E%3E_%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Milad Rivandi — Senior .NET Backend Engineer">
+<meta property="og:description" content="Portfolio served as a running API: microservices, DDD, CQRS, Kafka.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12; --panel:#10151c; --panel2:#141b24; --line:#1f2935; --text:#c9d4e0; --dim:#6b7a8c;
+  --green:#6dffb0; --amber:#ffb454; --red:#ff6b6b; --blue:#6cb6ff; --violet:#c49bff;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace; --head:'Space Grotesk',var(--mono);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:60px}
+body{background:var(--bg);color:var(--text);font:14px/1.65 var(--mono);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 3px)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(800px 500px at 80% -10%,rgba(109,255,176,.08),transparent 60%),radial-gradient(600px 400px at 0% 100%,rgba(108,182,255,.06),transparent 60%)}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+::selection{background:var(--green);color:#000}
+.g{color:var(--green)}.a{color:var(--amber)}.r{color:var(--red)}.b{color:var(--blue)}.v{color:var(--violet)}.d{color:var(--dim)}
+
+/* status bar */
+.status{position:fixed;top:0;left:0;right:0;height:40px;z-index:40;background:rgba(10,13,18,.9);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;padding:0 20px;font-size:12px;white-space:nowrap;overflow:hidden}
+.status .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.status .sp{flex:1}
+.status b{color:var(--green);font-weight:500}
+
+/* layout */
+.shell{display:grid;grid-template-columns:240px 1fr;padding-top:40px;min-height:100vh;position:relative;z-index:1}
+.side{position:sticky;top:40px;height:calc(100vh - 40px);border-right:1px solid var(--line);padding:22px 0;background:rgba(16,21,28,.5);display:flex;flex-direction:column}
+.side h6{font-size:11px;letter-spacing:.12em;color:var(--dim);padding:0 20px 8px;font-weight:500}
+.side a{display:flex;gap:10px;align-items:center;padding:7px 20px;color:var(--text);font-size:13px;border-left:2px solid transparent}
+.side a:hover{background:var(--panel2);text-decoration:none}
+.side a.on{border-left-color:var(--green);background:var(--panel2);color:#fff}
+.m{font-size:10px;font-weight:700;width:38px;display:inline-block}
+.GET{color:var(--green)}.POST{color:var(--amber)}.PUT{color:var(--blue)}
+.side .foot{margin-top:auto;padding:0 20px;font-size:11px;color:var(--dim)}
+main{min-width:0;padding:0 clamp(16px,4vw,56px) 80px}
+section{padding:80px 0 20px;border-bottom:1px dashed var(--line)}
+section:last-of-type{border:0}
+
+.reqbar{display:flex;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13px;margin-bottom:26px;flex-wrap:wrap}
+.reqbar .m{width:auto;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,.06)}
+.reqbar .res{margin-left:auto;font-size:12px}
+.res i{font-style:normal;padding:1px 7px;border-radius:4px;background:rgba(109,255,176,.12);color:var(--green)}
+h1,h2{font-family:var(--head);color:#fff;letter-spacing:-.02em}
+h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:8px}
+.lead{color:var(--dim);margin-bottom:28px;max-width:60ch}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;align-items:start;padding-top:60px}
+h1{font-size:clamp(38px,6vw,72px);line-height:1.02;margin:14px 0 18px}
+h1 .cur{display:inline-block;width:.5em;height:.85em;background:var(--green);vertical-align:-.05em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.boot{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:12px;min-height:200px;margin-bottom:18px;overflow:hidden}
+.boot div{opacity:0;animation:in .2s forwards}
+@keyframes in{to{opacity:1}}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.btn{font:inherit;cursor:pointer;border:1px solid var(--green);background:transparent;color:var(--green);padding:10px 16px;border-radius:6px;transition:.15s}
+.btn:hover{background:var(--green);color:#000;text-decoration:none}
+.btn.alt{border-color:var(--line);color:var(--text)}
+.btn.alt:hover{background:var(--panel2);color:#fff}
+.logs{background:#07090d;border:1px solid var(--line);border-radius:10px;height:380px;overflow:hidden;position:relative;font-size:11.5px}
+.logs .hd{padding:8px 12px;border-bottom:1px solid var(--line);color:var(--dim);display:flex;justify-content:space-between;background:var(--panel)}
+.logs .body{padding:10px 12px;display:flex;flex-direction:column;justify-content:flex-end;height:calc(100% - 34px);gap:3px}
+.logs .body div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:in .2s}
+.logs::after{content:"";position:absolute;inset:34px 0 auto;height:60px;background:linear-gradient(#07090d,transparent)}
+
+/* projects */
+.proj{border:1px solid var(--line);border-radius:12px;background:var(--panel);margin-bottom:22px;overflow:hidden;transition:border-color .2s}
+.proj:hover{border-color:#2d3b4c}
+.proj-h{display:flex;gap:10px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap;background:var(--panel2)}
+.proj-h .m{width:auto}
+.proj-b{display:grid;grid-template-columns:1fr 1fr}
+.proj-b>div{padding:18px 18px}
+.proj-b>div+div{border-left:1px solid var(--line);background:#0b1016}
+.proj h3{font-family:var(--head);font-size:22px;color:#fff;margin-bottom:6px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.tag{font-size:11px;padding:2px 9px;border:1px solid var(--line);border-radius:99px;color:var(--dim)}
+.arch{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:14px 0;font-size:11px}
+.arch span{border:1px solid var(--line);border-radius:6px;padding:4px 8px;background:var(--panel2)}
+.arch em{color:var(--green);font-style:normal}
+pre{font:12px/1.7 var(--mono);white-space:pre-wrap;word-break:break-word}
+.k{color:var(--blue)}.s{color:var(--green)}.n{color:var(--amber)}
+.try{margin-top:12px;font-size:12px}
+.metrics{display:flex;gap:18px;margin-top:14px;font-size:12px;flex-wrap:wrap}
+.metrics b{display:block;font-size:20px;color:#fff;font-family:var(--head)}
+
+/* stack */
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:22px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.box .bh{padding:9px 14px;border-bottom:1px solid var(--line);background:var(--panel2);font-size:12px;color:var(--dim);display:flex;gap:8px;align-items:center}
+.box .bh i{width:9px;height:9px;border-radius:50%;background:#2a3544;display:inline-block}
+.box pre,.box .pad{padding:14px 16px}
+.hc{display:grid;gap:10px}
+.hc div{display:grid;grid-template-columns:110px 1fr 70px;gap:10px;align-items:center;font-size:12px}
+.bar{height:6px;background:#1a222d;border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--blue));width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+
+/* git log */
+.git{padding:16px 18px;font-size:13px}
+.commit{display:grid;grid-template-columns:20px 1fr;gap:10px;padding-bottom:20px;position:relative}
+.commit::before{content:"";position:absolute;left:5px;top:16px;bottom:-4px;width:1px;background:var(--line)}
+.commit:last-child::before{display:none}
+.commit .node{width:11px;height:11px;border-radius:50%;border:2px solid var(--green);background:var(--bg);margin-top:5px}
+.commit .hash{color:var(--amber)}
+.commit p{color:var(--dim);font-size:12.5px;margin-top:2px}
+
+/* terminal */
+.term{background:#06080b;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 20px 60px -20px rgba(109,255,176,.15)}
+.term .out{height:340px;overflow-y:auto;padding:14px 16px;font-size:13px}
+.term .out div{white-space:pre-wrap;word-break:break-word}
+.term form{display:flex;gap:8px;padding:10px 16px;border-top:1px solid var(--line);background:var(--panel)}
+.term input{flex:1;background:none;border:0;outline:0;color:#fff;font:inherit}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{font:inherit;font-size:12px;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:3px 10px;border-radius:6px;cursor:pointer}
+.chip:hover{border-color:var(--green);color:var(--green)}
+/* contact */
+form.contact{display:grid;gap:12px}
+.contact label{font-size:11px;color:var(--dim);display:block;margin-bottom:3px}
+.contact input,.contact textarea{width:100%;background:#0b1016;border:1px solid var(--line);border-radius:6px;color:#fff;font:inherit;padding:9px 11px;outline:0}
+.contact input:focus,.contact textarea:focus{border-color:var(--green)}
+.resp{min-height:130px}
+footer{padding:50px 0 0;color:var(--dim);font-size:12px}
+
+/* ---- v2: motion + interaction ---- */
+.glow{position:fixed;top:0;left:0;width:400px;height:400px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,color-mix(in srgb,var(--green) 11%,transparent),transparent 65%);transition:transform .12s linear}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.proj.rv.in{transition:opacity .7s,transform .15s,border-color .2s,box-shadow .3s}
+.proj.flash{border-color:var(--green);box-shadow:0 0 30px color-mix(in srgb,var(--green) 35%,transparent)}
+.role{font-size:15px;color:var(--text);min-height:26px;margin-bottom:14px}
+.cur2{display:inline-block;width:8px;height:15px;background:var(--green);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
+h1 .g{display:inline-block}
+h1:hover .g{animation:glitch .45s steps(2) 1}
+@keyframes glitch{0%{text-shadow:3px 0 var(--red),-3px 0 var(--blue);transform:translateX(-2px)}50%{text-shadow:-3px 0 var(--red),3px 0 var(--blue);transform:translateX(3px) skewX(-6deg)}100%{text-shadow:none;transform:none}}
+.arch span{transition:.25s}
+.arch span.hot{border-color:var(--green);color:#fff;box-shadow:0 0 14px color-mix(in srgb,var(--green) 40%,transparent);transform:translateY(-2px)}
+.status .dot{cursor:pointer}
+.tbtn,.sc{font:inherit;font-size:11px;background:none;border:1px solid var(--line);color:var(--text);border-radius:5px;padding:1px 9px;cursor:pointer;white-space:nowrap}
+.tbtn:hover,.sc:hover{border-color:var(--green);color:var(--green)}
+kbd{font:inherit;font-size:10px;border:1px solid var(--dim);border-radius:3px;padding:0 4px;margin-left:4px;color:var(--dim)}
+#toasts{position:fixed;top:52px;right:16px;z-index:70;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{background:var(--panel);border:1px solid var(--green);border-radius:8px;padding:9px 14px;font-size:12.5px;box-shadow:0 10px 40px rgba(0,0,0,.5);animation:tin .35s cubic-bezier(.2,.8,.2,1)}
+.toast.out{opacity:0;transform:translateX(20px);transition:.4s}
+@keyframes tin{from{opacity:0;transform:translateX(40px)}}
+#rain{position:fixed;inset:0;width:100%;height:100%;z-index:60;pointer-events:none;opacity:0;transition:opacity .8s}
+.drawer{position:fixed;left:0;right:0;bottom:0;height:min(46vh,420px);z-index:45;background:rgba(6,8,11,.97);backdrop-filter:blur(10px);
+  border-top:1px solid var(--green);box-shadow:0 -20px 60px rgba(0,0,0,.6);transform:translateY(105%);transition:transform .35s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.drawer .dh{display:flex;justify-content:space-between;padding:6px 16px;font-size:11px;color:var(--dim);border-bottom:1px solid var(--line)}
+.drawer .dh button{background:none;border:0;color:var(--dim);cursor:pointer;font:inherit}
+.drawer .out{flex:1;overflow:auto;padding:10px 18px;font-size:13px}
+.drawer .out div,.term .out div{white-space:pre-wrap;word-break:break-word}
+.drawer form{display:flex;gap:8px;padding:10px 18px;border-top:1px solid var(--line)}
+.drawer input{flex:1;background:none;border:0;outline:0;color:#fff;font:inherit}
+.tokens{display:flex;gap:8px;margin-bottom:14px}
+.tokens i{width:38px;height:38px;border-radius:8px;border:1px solid var(--line);background:#0b1016;transition:.25s}
+.tokens i.on{background:var(--green);border-color:var(--green);box-shadow:0 0 14px color-mix(in srgb,var(--green) 45%,transparent)}
+.tokens.shake{animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.ctl{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
+input[type=range]{accent-color:var(--green);width:160px}
+input[type=checkbox]{accent-color:var(--green)}
+canvas#chart{width:100%;height:170px;background:#0b1016;border:1px solid var(--line);border-radius:8px;display:block}
+body.crash{animation:crash .7s}
+@keyframes crash{20%{transform:translate(-8px,4px);filter:hue-rotate(90deg)}40%{transform:translate(8px,-4px);filter:invert(1)}60%{transform:translate(-4px,-6px);filter:hue-rotate(200deg)}100%{transform:none;filter:none}}
+body.debug section{outline:1px dashed color-mix(in srgb,var(--green) 50%,transparent);position:relative}
+body.debug section::before{content:"<section#" attr(id) ">";position:absolute;top:6px;right:0;font-size:10px;color:var(--green);background:var(--bg);padding:0 6px}
+body.debug .proj,body.debug .box,body.debug .reqbar{outline:1px solid color-mix(in srgb,var(--blue) 40%,transparent)}
+.hint{cursor:pointer}
+.ov{position:fixed;inset:0;z-index:80;display:none;place-items:center;background:rgba(5,7,10,.86);backdrop-filter:blur(6px)}
+.ov.on{display:grid}
+.gbox{background:var(--panel);border:1px solid var(--green);border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 40px color-mix(in srgb,var(--green) 18%,transparent)}
+.gbox canvas{display:block;width:min(320px,86vw);height:auto;aspect-ratio:1}
+.gh{display:flex;justify-content:space-between;gap:16px;padding:8px 12px;font-size:12px;border-bottom:1px solid var(--line)}
+.gbox .gh:last-child{border:0;border-top:1px solid var(--line)}
+.crashbox{padding:24px;width:min(500px,92vw);border-color:var(--red)!important;box-shadow:0 0 60px rgba(255,107,107,.25)!important}
+.crashbox h3{font:700 30px var(--head);margin-bottom:12px}
+.crashbox pre{min-height:130px;margin-bottom:14px}
+.pop{position:fixed;pointer-events:none;z-index:65;font-size:11px;font-weight:700;transform:translate(-50%,-50%);animation:pop 1s ease-out forwards;white-space:nowrap}
+@keyframes pop{to{opacity:0;transform:translate(-50%,-200%)}}
+@media(max-width:1000px){
+  .shell{grid-template-columns:1fr}.side{display:none}
+  .hero,.two,.proj-b{grid-template-columns:1fr}
+  .proj-b>div+div{border-left:0;border-top:1px solid var(--line)}
+  .status .hide-m{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="status">
+  <span class="dot" id="dot"></span><span><b>milad-api</b> v2.6.1</span>
+  <span class="hide-m d">uptime <span id="up" class="g">0s</span></span>
+  <span class="hide-m d">requests <span id="rq" class="g">0</span></span>
+  <span class="sp"></span>
+  <span class="d">p99 <span id="lat" class="a">12ms</span></span>
+  <span class="hide-m d">region <span class="b">yerevan-1</span></span>
+  <button class="sc" id="sc" type="button" title="Hidden secrets found">🔓 0/12</button>
+  <button class="tbtn" id="tbtn" type="button">&gt;_ terminal<kbd>`</kbd></button>
+</div>
+
+<div class="glow" id="glow"></div>
+<canvas id="rain"></canvas>
+<div class="ov" id="ov"></div>
+<div id="toasts" aria-live="polite"></div>
+<div class="drawer" id="drawer" aria-label="Terminal">
+  <div class="dh"><span>milad-shell — press <kbd>`</kbd> or Esc to close · Tab to autocomplete · ↑ history</span><button id="dclose" type="button">✕</button></div>
+  <div class="out" id="dout"></div>
+  <form id="df" autocomplete="off"><span class="g">guest@milad:~$</span><input id="dcmd" aria-label="Terminal command" spellcheck="false" autocapitalize="off"></form>
+</div>
+<div class="shell">
+<nav class="side" aria-label="Routes">
+  <h6>ROUTES</h6>
+  <a href="#root" class="on"><span class="m GET">GET</span>/</a>
+  <a href="#projects"><span class="m GET">GET</span>/projects</a>
+  <a href="#stack"><span class="m GET">GET</span>/stack</a>
+  <a href="#experience"><span class="m GET">GET</span>/experience</a>
+  <a href="#lab"><span class="m GET">GET</span>/lab</a>
+  <a href="#shell"><span class="m PUT">EXEC</span>/shell</a>
+  <a href="#contact"><span class="m POST">POST</span>/contact</a>
+  <div class="foot">
+    <div>Tip: open <span class="g">/shell</span><br>and type <span class="g">help</span></div>
+    <div style="margin-top:10px">© 2026 · built with 0 frameworks</div>
+  </div>
+</nav>
+
+<main>
+<!-- HERO -->
+<section id="root" style="padding-top:20px;border:0">
+  <div class="hero">
+    <div>
+      <div class="boot" id="boot" aria-hidden="true"></div>
+      <div class="d">// 200 OK — you've reached Milad Rivandi</div>
+      <h1>Milad<br><span class="g">.NET</span> Dev<span class="cur"></span></h1>
+      <div class="role"><span class="g">&gt;</span> I build <span id="role"></span><span class="cur2"></span></div>
+      <p class="lead">Senior .NET backend engineer with 9+ years building distributed, high-throughput systems — microservices, DDD, CQRS, Kafka. This portfolio is a tiny running backend: poke around the routes on the left.</p>
+      <div class="btns">
+        <a class="btn" href="#projects">curl /projects</a>
+        <a class="btn alt" href="#shell">./open-shell.sh</a>
+        <a class="btn alt" href="#contact">POST /contact</a>
+        <button class="btn alt" id="hterm" type="button">&gt;_ open terminal<kbd>`</kbd></button>
+      </div>
+    </div>
+    <div class="logs" aria-hidden="true">
+      <div class="hd"><span>tail -f access.log</span><span class="g">● live</span></div>
+      <div class="body" id="log"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reqbar"><span class="m GET">GET</span><span>/api/v1/projects</span><span class="res"><i>200 OK</i> <span class="d">· 18ms · application/json</span></span></div>
+  <h2>Projects</h2>
+  <p class="lead">Open-source packages and a solo MVP. Hit “Send” to replay each request.</p>
+
+  <article class="proj" data-ms="23">
+    <div class="proj-h"><span class="m GET">GET</span><span>/projects/keycloak-net</span><span class="d" style="margin-left:auto">open source</span></div>
+    <div class="proj-b">
+      <div>
+        <h3>Keycloak.Net</h3>
+        <p class="d">Modular .NET SDK for Keycloak IAM — covers users, roles, tokens, clients and realms. Published on NuGet with documentation and samples to accelerate enterprise onboarding.</p>
+        <div class="arch"><span>.NET app</span><em>→</em><span>Keycloak.Net.Sdk</span><em>→</em><span>Keycloak REST API</span><em>→</em><span>Keycloak</span></div>
+        <div class="tags"><span class="tag">C#</span><span class="tag">.NET</span><span class="tag">NuGet</span><span class="tag">Keycloak</span></div>
+        <div class="metrics"><div><b>5</b><span class="d">areas covered</span></div><div><b>OSS</b><span class="d">on GitHub</span></div><div><b>NuGet</b><span class="d">package</span></div></div>
+      </div>
+      <div>
+<pre class="resp">{
+  <span class="k">"id"</span>: <span class="s">"keycloak-net"</span>,
+  <span class="k">"status"</span>: <span class="s">"open-source"</span>,
+  <span class="k">"covers"</span>: [<span class="s">"users"</span>, <span class="s">"roles"</span>, <span class="s">"tokens"</span>, <span class="s">"clients"</span>, <span class="s">"realms"</span>],
+  <span class="k">"repo"</span>: <a href="https://github.com/MiladRv/Keycloak.Net" rel="noopener">github.com/MiladRv/Keycloak.Net</a>,
+  <span class="k">"nuget"</span>: <a href="https://www.nuget.org/packages/Keycloak.Net.Sdk" rel="noopener">Keycloak.Net.Sdk</a>
+}</pre>
+        <button class="btn try" type="button">▶ Send</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="proj" data-ms="19">
+    <div class="proj-h"><span class="m GET">GET</span><span>/projects/asyncify-net</span><span class="d" style="margin-left:auto">open source</span></div>
+    <div class="proj-b">
+      <div>
+        <h3>Asyncify.Net</h3>
+        <p class="d">ASP.NET Core middleware that offloads synchronous controller actions to background threads and returns an instant <span class="g">trackId</span> for client polling. Supports .NET 8 and 10, published on NuGet. Originally built as part of a team project; forked and continued independently after the upstream repository was archived, adding support for newer .NET versions and maintaining the package.</p>
+        <div class="arch"><span>Client</span><em>→</em><span>Controller action</span><em>→</em><span>Asyncify middleware</span><em>→</em><span>Background thread</span><em>→</em><span>trackId polling</span></div>
+        <div class="tags"><span class="tag">C#</span><span class="tag">ASP.NET Core</span><span class="tag">Middleware</span><span class="tag">NuGet</span></div>
+        <div class="metrics"><div><b>.NET 8 + 10</b><span class="d">supported</span></div><div><b>OSS</b><span class="d">maintained fork</span></div></div>
+      </div>
+      <div>
+<pre class="resp">{
+  <span class="k">"id"</span>: <span class="s">"asyncify-net"</span>,
+  <span class="k">"status"</span>: <span class="s">"open-source"</span>,
+  <span class="k">"returns"</span>: <span class="s">"trackId (instant)"</span>,
+  <span class="k">"frameworks"</span>: [<span class="s">".NET 8"</span>, <span class="s">".NET 10"</span>],
+  <span class="k">"repo"</span>: <a href="https://github.com/MiladRv/Asyncify.Net" rel="noopener">github.com/MiladRv/Asyncify.Net</a>,
+  <span class="k">"nuget"</span>: <a href="https://www.nuget.org/packages/MiladRv.Asyncify.Net" rel="noopener">MiladRv.Asyncify.Net</a>
+}</pre>
+        <button class="btn try" type="button">▶ Send</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="proj" data-ms="31">
+    <div class="proj-h"><span class="m GET">GET</span><span>/projects/crowdnest-io</span><span class="d" style="margin-left:auto">solo developer · MVP</span></div>
+    <div class="proj-b">
+      <div>
+        <h3>Crowdnest.io</h3>
+        <p class="d">Aggregation platform that consolidates crowdfunding listings from multiple platforms (Kickstarter, Indiegogo, Wefunder, GameFound, Ulule and more) into a single searchable feed. Data sourced via web scraping, with automated CI/CD pipelines.</p>
+        <div class="tags"><span class="tag">.NET</span><span class="tag">React / Next.js</span><span class="tag">Tailwind CSS</span><span class="tag">MongoDB</span><span class="tag">Hangfire</span><span class="tag">Docker</span><span class="tag">CI/CD</span></div>
+        <div class="metrics"><div><b>5+</b><span class="d">platforms aggregated</span></div><div><b>Solo</b><span class="d">end to end</span></div></div>
+      </div>
+      <div>
+<pre class="resp">{
+  <span class="k">"id"</span>: <span class="s">"crowdnest-io"</span>,
+  <span class="k">"role"</span>: <span class="s">"solo developer"</span>,
+  <span class="k">"stage"</span>: <span class="s">"MVP"</span>,
+  <span class="k">"sources"</span>: [<span class="s">"Kickstarter"</span>, <span class="s">"Indiegogo"</span>, <span class="s">"Wefunder"</span>, <span class="s">"GameFound"</span>, <span class="s">"Ulule"</span>],
+  <span class="k">"ingest"</span>: <span class="s">"web scraping + Hangfire jobs"</span>
+}</pre>
+        <button class="btn try" type="button">▶ Send</button>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="reqbar"><span class="m GET">GET</span><span>/api/v1/stack</span><span class="res"><i>200 OK</i> <span class="d">· 4ms · text/yaml</span></span></div>
+  <h2>Stack</h2>
+  <p class="lead">My toolbox, written as the docker-compose file I wish every team had.</p>
+  <div class="two">
+    <div class="box">
+      <div class="bh"><i></i><i></i><i></i> docker-compose.yml</div>
+<pre><span class="d"># services I keep running</span>
+<span class="b">services</span>:
+  <span class="b">backend</span>:
+    <span class="k">image</span>: <span class="s">C# | ASP.NET Core | EF Core | Dapper</span>
+  <span class="b">architecture</span>:
+    <span class="k">image</span>: <span class="s">DDD | CQRS | EDA | Clean Arch | TDD</span>
+  <span class="b">databases</span>:
+    <span class="k">image</span>: <span class="s">SQL Server | PostgreSQL | MongoDB | Elasticsearch</span>
+  <span class="b">cache</span>:
+    <span class="k">image</span>: <span class="s">Redis | Aerospike | FusionCache</span>
+  <span class="b">messaging</span>:
+    <span class="k">image</span>: <span class="s">Kafka | RabbitMQ | NATS</span>
+  <span class="b">infra</span>:
+    <span class="k">image</span>: <span class="s">Docker | Kubernetes | Azure DevOps | CI/CD</span>
+  <span class="b hint" id="cof">coffee</span>:
+    <span class="k">restart</span>: <span class="n">always</span></pre>
+    </div>
+    <div class="box">
+      <div class="bh"><i></i><i></i><i></i> healthcheck --all</div>
+      <div class="pad hc" id="hc">
+        <div><span>C#</span><span class="bar"><i data-w="95"></i></span><span class="g">healthy</span></div>
+        <div><span>ASP.NET Core</span><span class="bar"><i data-w="95"></i></span><span class="g">healthy</span></div>
+        <div><span>SQL Server</span><span class="bar"><i data-w="90"></i></span><span class="g">healthy</span></div>
+        <div><span>PostgreSQL</span><span class="bar"><i data-w="82"></i></span><span class="g">healthy</span></div>
+        <div><span>MongoDB</span><span class="bar"><i data-w="80"></i></span><span class="g">healthy</span></div>
+        <div><span>Kafka</span><span class="bar"><i data-w="80"></i></span><span class="g">healthy</span></div>
+        <div><span>Docker</span><span class="bar"><i data-w="85"></i></span><span class="g">healthy</span></div>
+        <div><span>Kubernetes</span><span class="bar"><i data-w="65"></i></span><span class="a">growing</span></div>
+        <div><span>Redis</span><span class="bar"><i data-w="82"></i></span><span class="g">healthy</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reqbar"><span class="m GET">GET</span><span>/api/v1/experience</span><span class="res"><i>200 OK</i> <span class="d">· 7ms · git log</span></span></div>
+  <h2>Experience</h2>
+  <p class="lead">9+ years, as commits on <span class="g">main</span>.</p>
+  <div class="box"><div class="bh"><i></i><i></i><i></i> git log --oneline --graph</div>
+    <div class="git">
+      <div class="commit"><span class="node"></span><div><span class="hash">e3b7d90</span> <span class="g">(HEAD → main)</span> feat: Senior Software Engineer @ Houshmand Farayand Raya <span class="d">· Aug 2026 — now</span><p>Building a new .NET ERP for a transportation company, replacing an SAP-based platform from scratch; my team owns the Scheduling module. DDD &amp; clean architecture, AI-first delivery (AI-DLC v2), mentoring three SAP/ABAP engineers as they move to .NET.</p></div></div>
+      <div class="commit"><span class="node"></span><div><span class="hash">a41f9c2</span> feat: Senior .NET Full-Stack Developer @ Gapfilm <span class="d">· Feb 2025 — Apr 2026</span><p>High-traffic REST APIs on ASP.NET Core &amp; EF Core. Ported an OpenAI-powered recommendation chatbot to .NET (SQL Server, Elasticsearch). FusionCache with tag-based invalidation: −50% API response time.</p></div></div>
+      <div class="commit"><span class="node"></span><div><span class="hash">7be03d1</span> feat: Senior .NET Backend Developer @ Xaniis <span class="d">· Jun 2024 — Feb 2025</span><p>Offline order submission for a stock-trading platform (EDA, Kafka). DDD aggregates, domain events and sagas. −30% cheque-processing errors.</p></div></div>
+      <div class="commit"><span class="node"></span><div><span class="hash">2c8d5aa</span> feat: Backend Team Lead (.NET) @ GreenCity <span class="d">· Mar 2022 — Jun 2024</span><p>Owned backend architecture for a multi-service platform, mentored 3 engineers. Kafka event-driven design, ~80% test coverage via TDD, tuned PostgreSQL &amp; MongoDB, Redis caching.</p></div></div>
+      <div class="commit"><span class="node"></span><div><span class="hash">9d12e47</span> feat: Senior .NET Developer @ GreenCity <span class="d">· Dec 2021 — Mar 2022</span><p>Microservices backend (+40% performance), security service with MFA &amp; encryption (−30% incidents), Kafka async communication (−20% inter-service latency), Ocelot API gateway.</p></div></div>
+      <div class="commit"><span class="node"></span><div><span class="hash">51a0b3c</span> feat: Full-Stack .NET Developer @ SadTahlil (100Tahlil) <span class="d">· Apr 2016 — Dec 2021</span><p>Sustained 1M+ requests (−50% response time), Redis &amp; Aerospike caching layers, standardized MVC &amp; Git Flow (−20% delivery time).</p></div></div>
+      <div class="commit"><span class="node"></span><div><span class="hash">0000001</span> init: BSc Software Engineering — Sadra Institute <span class="d">· 2013 — 2018 · Tehran</span><p>Started writing code. Never stopped.</p></div></div>
+    </div>
+  </div>
+  <div class="two" style="margin-top:22px">
+    <div class="box"><div class="bh"><i></i><i></i><i></i> ls ~/courses</div>
+<pre><span class="b">Event-Driven-Architecture/</span>   <span class="d">Hadi Ahmadi · 2023</span>
+<span class="b">Domain-Driven-Design/</span>       <span class="d">Hadi Ahmadi · 2020</span>
+<span class="b">Docker-and-Kubernetes/</span>      <span class="d">LinkedIn Learning · 2024</span></pre></div>
+    <div class="box"><div class="bh"><i></i><i></i><i></i> locale --list</div>
+<pre><span class="k">fa_IR</span>  Persian  — <span class="g">native</span>
+<span class="k">en_US</span>  English  — <span class="g">fluent</span>
+<span class="d">based in: Armenia · timezone: Asia/Yerevan</span></pre></div>
+  </div>
+</section>
+
+<!-- LAB -->
+<section id="lab">
+  <div class="reqbar"><span class="m GET">GET</span><span>/api/v1/lab</span><span class="res"><i>200 OK</i> <span class="d">· 11ms · interactive</span></span></div>
+  <h2>Lab</h2>
+  <p class="lead">Backend concepts you can actually poke. Break things — it's a sandbox.</p>
+  <div class="two">
+    <div class="box">
+      <div class="bh"><i></i><i></i><i></i> rate-limiter — token bucket (5 tokens, +1 / 2s)</div>
+      <div class="pad">
+        <div class="tokens" id="tokens"></div>
+        <button class="btn" id="rlbtn" type="button">▶ Send request</button>
+        <pre class="resp" id="rlout" style="margin-top:12px"><span class="d">// spam the button. see what happens.</span></pre>
+      </div>
+    </div>
+    <div class="box">
+      <div class="bh"><i></i><i></i><i></i> loadtest — wrk -c <span id="lt-ul" class="g">&nbsp;300</span></div>
+      <div class="pad">
+        <div class="ctl">
+          <label>users <input type="range" id="lt-users" min="50" max="2000" step="50" value="300"></label>
+          <label><input type="checkbox" id="lt-auto"> autoscale</label>
+          <button class="btn" id="lt-go" type="button" style="padding:4px 12px">▶ Start</button>
+        </div>
+        <canvas id="chart" width="640" height="190"></canvas>
+        <div class="d" id="lt-stat" style="margin-top:8px;font-size:12px">press start, then push the slider up.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHELL -->
+<section id="shell">
+  <div class="reqbar"><span class="m PUT">EXEC</span><span>/shell</span><span class="res"><i>101 Switching Protocols</i> <span class="d">· websocket</span></span></div>
+  <h2>Shell</h2>
+  <p class="lead">A tiny interactive terminal. Try the commands below — or hunt for easter eggs.</p>
+  <div class="term" onclick="document.getElementById('cmd').focus()">
+    <div class="out" id="out" aria-live="polite"></div>
+    <form id="tf" autocomplete="off"><span class="g">guest@milad:~$</span><input id="cmd" aria-label="Terminal command" spellcheck="false" autocapitalize="off"></form>
+  </div>
+  <div class="chips">
+    <button class="chip" data-c="help">help</button><button class="chip" data-c="whoami">whoami</button>
+    <button class="chip" data-c="ls projects">ls projects</button><button class="chip" data-c="curl /api/skills">curl /api/skills</button>
+    <button class="chip" data-c="docker ps">docker ps</button><button class="chip" data-c="sudo hire milad">sudo hire milad</button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reqbar"><span class="m POST">POST</span><span>/api/v1/contact</span><span class="res"><span class="d">awaiting body…</span></span></div>
+  <h2>Contact</h2>
+  <p class="lead">Have a system that needs building (or fixing)? Send a request.</p>
+  <div class="two">
+    <form class="contact" id="cf">
+      <div><label for="n">name</label><input id="n" required placeholder="Ada Lovelace"></div>
+      <div><label for="e">email</label><input id="e" type="email" required placeholder="ada@example.com"></div>
+      <div><label for="m">message</label><textarea id="m" rows="4" required placeholder="We have a monolith and a dream…"></textarea></div>
+      <button class="btn" type="submit">▶ Send request</button>
+    </form>
+    <div class="box"><div class="bh"><i></i><i></i><i></i> response</div><pre class="resp" id="cr"><span class="d">// fill the form and send.</span></pre></div>
+  </div>
+  <footer>
+    <span class="g">$</span> links → <a href="https://github.com/MiladRv" rel="noopener">github</a> · <a href="https://www.linkedin.com/in/milad-rivandi/" rel="noopener">linkedin</a> · <a href="mailto:miladrivandi73@gmail.com">miladrivandi73@gmail.com</a> · <a href="resume.pdf">resume.pdf</a><br>
+    <span class="d">Connection: keep-alive · Thanks for visiting.</span>
+  </footer>
+</section>
+</main>
+</div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+
+/* boot sequence */
+const boot=[
+ ['<span class="g">[ OK ]</span> loading config from .env'],
+ ['<span class="g">[ OK ]</span> connecting postgres://db:5432 <span class="d">(14ms)</span>'],
+ ['<span class="g">[ OK ]</span> connecting redis://cache:6379 <span class="d">(2ms)</span>'],
+ ['<span class="g">[ OK ]</span> running migrations <span class="d">(23 applied)</span>'],
+ ['<span class="g">[ OK ]</span> mounting routes: / /projects /stack /experience /shell /contact'],
+ ['<span class="a">[WARN]</span> coffee level low'],
+ ['<span class="g">[ OK ]</span> Kestrel listening on <span class="b">:5000</span> — ready for requests']
+];
+const bootEl=$('#boot');
+boot.forEach((l,i)=>{const d=document.createElement('div');d.innerHTML=l[0];d.style.animationDelay=(i*0.35)+'s';bootEl.appendChild(d)});
+
+/* live log */
+const paths=['/projects','/stack','/api/v1/users/42','/health','/experience','/shell','/api/v1/orders','/auth/refresh','/projects/keycloak-net','/metrics'];
+const methods=['GET','GET','GET','POST','GET','PUT'];
+const logEl=$('#log');let reqs=0;
+function addLog(){
+  const m=methods[rnd(0,methods.length-1)],p=paths[rnd(0,paths.length-1)];
+  const st=Math.random()<.9?200:[201,304,404,429][rnd(0,3)];
+  const col=st<300?'g':st<400?'b':'a';
+  const ms=rnd(2,60);
+  const t=new Date().toISOString().slice(11,19);
+  const d=document.createElement('div');
+  d.innerHTML=`<span class="d">${t}</span> <span class="${m==='GET'?'g':'a'}">${m.padEnd(4)}</span> ${p} <span class="${col}">${st}</span> <span class="d">${ms}ms</span>`;
+  logEl.appendChild(d);while(logEl.children.length>16)logEl.firstChild.remove();
+  reqs++;$('#rq').textContent=reqs.toLocaleString();
+  $('#lat').textContent=rnd(9,24)+'ms';
+}
+for(let i=0;i<8;i++)addLog();
+setInterval(addLog,900);
+
+/* uptime */
+const t0=Date.now();
+setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);$('#up').textContent=(s>=60?Math.floor(s/60)+'m ':'')+(s%60)+'s'},1000);
+
+/* project "send" */
+$$('.proj').forEach(p=>{
+  const btn=p.querySelector('.try'),pre=p.querySelector('.resp'),orig=pre.innerHTML;
+  btn.onclick=()=>{
+    btn.textContent='… sending';btn.disabled=true;
+    setTimeout(()=>{
+      pre.innerHTML=orig.replace(/\}\s*$/,`,\n  <span class="k">"served_in"</span>: <span class="s">"${p.dataset.ms+rnd(0,9)}ms"</span>,\n  <span class="k">"request_id"</span>: <span class="s">"${Math.random().toString(36).slice(2,10)}"</span>\n}`);
+      btn.textContent='▶ Send again';btn.disabled=false;
+    },350+rnd(0,300));
+  };
+});
+
+/* health bars on view */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){$$('#hc .bar i').forEach(i=>i.style.width=i.dataset.w+'%');io.disconnect()}}),{threshold:.3});
+io.observe($('#hc'));
+
+/* scrollspy */
+const links=$$('.side a'),secs=links.map(a=>$(a.getAttribute('href')));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>spy.observe(s));
+
+/* ================= v2: secrets, terminal, motion, lab ================= */
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+/* ---------- secrets / achievements ---------- */
+const SECRETS={
+ konami:['The Code','↑ ↑ ↓ ↓ ← → ← → B A'],
+ debug:['Debug Mode','something green is clickable… many times'],
+ env:['Leaked .env','what do hidden files hide?'],
+ teapot:['418','something wants coffee'],
+ limit:['429','be impatient in the Lab'],
+ scale:['Autoscaler','survive a traffic spike'],
+ theme:['Themer','change the colours'],
+ matrix:['Wake up, Neo','follow the white rabbit'],
+ hire:['Hired!','sudo makes things happen'],
+ snake:['Snake Charmer','a classic hides in the terminal'],
+ sql:['Query Master','talk to the database'],
+ crash:['Chaos Engineer','kill something important']
+};
+const TOTAL=Object.keys(SECRETS).length;
+let found=new Set();
+try{found=new Set(JSON.parse(localStorage.getItem('secrets')||'[]'))}catch(e){}
+const upCount=()=>{$('#sc').textContent='🔓 '+found.size+'/'+TOTAL};
+upCount();
+function toast(h){const t=document.createElement('div');t.className='toast';t.innerHTML=h;$('#toasts').appendChild(t);setTimeout(()=>t.classList.add('out'),3200);setTimeout(()=>t.remove(),3700)}
+function unlock(id){
+  if(found.has(id))return;found.add(id);
+  try{localStorage.setItem('secrets',JSON.stringify([...found]))}catch(e){}
+  upCount();toast(`🔓 <b>Secret unlocked:</b> ${SECRETS[id][0]} <span class="d">(${found.size}/${TOTAL})</span>`);
+  if(found.size===TOTAL)setTimeout(()=>{toast('🏆 <b>All secrets found.</b> You\'re hired.');matrix()},900);
+}
+
+/* ---------- themes ---------- */
+const THEMES={green:'#6dffb0',amber:'#ffb454',blue:'#6cb6ff',violet:'#c49bff',pink:'#ff79c6',red:'#ff6b6b'};
+function setTheme(n){document.documentElement.style.setProperty('--green',THEMES[n]);unlock('theme')}
+
+/* ---------- matrix rain ---------- */
+let mx=false;
+function matrix(){
+  if(mx)return;mx=true;unlock('matrix');
+  const c=$('#rain'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;c.style.opacity=.92;
+  const cols=Math.floor(c.width/16),drops=Array.from({length:cols},()=>rnd(-40,0));
+  const chars='アイウエオカキクケコサシスセソ0123456789ABCDEF<>/{}';
+  const col=getComputedStyle(document.documentElement).getPropertyValue('--green');
+  x.fillStyle='#0a0d12';x.fillRect(0,0,c.width,c.height);
+  let n=0;const iv=setInterval(()=>{
+    x.fillStyle='rgba(10,13,18,.13)';x.fillRect(0,0,c.width,c.height);
+    x.fillStyle=col;x.font='15px monospace';
+    drops.forEach((y,i)=>{x.fillText(chars[rnd(0,chars.length-1)],i*16,y*16);drops[i]=(y*16>c.height&&Math.random()>.975)?0:y+1});
+    if(++n>140){clearInterval(iv);c.style.opacity=0;setTimeout(()=>{x.clearRect(0,0,c.width,c.height);mx=false},900)}
+  },45);
+}
+
+/* ---------- terminal engine (shared by page shell + drawer) ---------- */
+const ROUTES={projects:'#projects',stack:'#stack',experience:'#experience',lab:'#lab',shell:'#shell',contact:'#contact',home:'#root','~':'#root','/':'#root'};
+const FILES={
+ 'about.md':()=>'# Milad Rivandi\nSenior .NET backend engineer · 9+ years · Armenia.\nMicroservices, DDD, CQRS, event-driven systems.',
+ 'resume.txt':()=>'Resume → <a href="#">resume.pdf</a>',
+ 'secrets.txt':()=>'Nothing here. Try <span class="a">secrets</span> instead.',
+ '.env':()=>{unlock('env');return 'DB_URL=postgres://admin:<span class="r">hunter2</span>@localhost/prod\nJWT_SECRET=<span class="r">not-really-a-secret</span>\nSTRIPE_KEY=sk_live_<span class="r">lol_no</span>\n\n<span class="d"># relax — these are fake. nice detective work though.</span>'}
+};
+const JOKES=['A SQL query walks into a bar, sees two tables and asks: “Can I join you?”','There are 10 kinds of people: those who understand binary and those who don\'t.','It works on my machine. — every container ever','!false — it\'s funny because it\'s true.','Why do backend devs prefer dark mode? Light attracts bugs.','NullReferenceException walks into a bar. Nobody saw it coming.'];
+const dockerRows='CONTAINER   IMAGE        STATUS\napi         aspnet:9     <span class="g">Up 3 years</span>\ndb          postgres     <span class="g">Up 3 years</span>\ncache       redis        <span class="g">Up 3 years</span>\ncoffee      arabica      <span class="a">Exited (0)</span>';
+const hash=h=>{if(!ROUTES[h])return false;location.hash=ROUTES[h];return true};
+const hist=[];
+
+const cmds={
+ help:()=>'<span class="d">— navigation —</span>\n  <span class="g">cd</span> &lt;projects|stack|experience|lab|shell|contact|home&gt;\n  <span class="g">ls</span> [-a] · <span class="g">cat</span> &lt;file&gt; · <span class="g">open</span> &lt;keycloak.net&gt;\n<span class="d">— info —</span>\n  <span class="g">whoami</span> · <span class="g">neofetch</span> · <span class="g">git log</span> · <span class="g">docker ps</span> · <span class="g">curl /api/skills</span>\n<span class="d">— fun —</span>\n  <span class="g">theme</span> &lt;color&gt; · <span class="g">matrix</span> · <span class="g">ping</span> · <span class="g">top</span> · <span class="g">fortune</span> · <span class="g">loadtest</span> · <span class="g">snake</span> · <span class="g">sql</span>\n<span class="d">— meta —</span>\n  <span class="g">secrets</span> · <span class="g">history</span> · <span class="g">clear</span> · <span class="g">exit</span>\n<span class="d">psst: not every command is listed.</span>',
+ whoami:()=>'milad rivandi — senior .NET backend engineer. Microservices, DDD, CQRS, Kafka.\nNow: <span class="g">Senior Software Engineer @ Houshmand Farayand Raya</span>',
+ ls:a=>{if(a[0]==='projects')return '<span class="b">keycloak.net/</span>  <span class="b">asyncify.net/</span>  <span class="b">crowdnest.io/</span>';
+   return 'about.md  resume.txt  secrets.txt  <span class="b">projects/</span>'+(a.includes('-a')||a.includes('-la')?'  <span class="a">.env</span>':'')},
+ projects:()=>cmds.ls(['projects']),
+ cd:(a,t)=>{const d=(a[0]||'home').replace(/^\//,'')||'home';if(hash(d)){if(t.drawer)setTimeout(()=>drawer(false),350);return `→ <span class="b">/${d==='home'?'':d}</span>`}return `<span class="r">cd: no such route:</span> ${esc(a[0]||'')}`},
+ cat:a=>{const f=FILES[a[0]];return f?f():`<span class="r">cat: ${esc(a[0]||'')}: No such file</span>`},
+ open:(a,t)=>{const p=$$('.proj').find(e=>e.querySelector('h3').textContent.toLowerCase()===(a[0]||'').toLowerCase());
+   if(!p)return '<span class="r">usage:</span> open &lt;keycloak.net|asyncify.net|crowdnest.io&gt;';
+   if(t.drawer)drawer(false);p.scrollIntoView({behavior:'smooth',block:'center'});p.classList.add('flash');setTimeout(()=>p.classList.remove('flash'),2200);return `opening <span class="b">${esc(a[0])}</span> …`},
+ neofetch:()=>'<span class="g">  ┌──────────┐</span>   milad@portfolio\n<span class="g">  │ ▓▓ ░░ ▓▓ │</span>   ───────────────\n<span class="g">  │ ░░ ▓▓ ░░ │</span>   <span class="g">OS</span>: Portfolio OS 2.6\n<span class="g">  │ ▓▓ ░░ ▓▓ │</span>   <span class="g">Role</span>: Senior .NET Backend Engineer\n<span class="g">  └──────────┘</span>   <span class="g">Shell</span>: milad-shell\n                 <span class="g">Uptime</span>: '+$('#up').textContent+'\n                 <span class="g">Secrets</span>: '+found.size+'/'+TOTAL,
+ 'git':a=>a[0]==='log'?'<span class="a">e3b7d90</span> Senior Software Engineer @ Houshmand Farayand Raya\n<span class="a">a41f9c2</span> Senior .NET Full-Stack @ Gapfilm\n<span class="a">7be03d1</span> Senior .NET Backend @ Xaniis\n<span class="a">2c8d5aa</span> Backend Team Lead @ GreenCity\n<span class="a">9d12e47</span> Senior .NET Dev @ GreenCity\n<span class="a">51a0b3c</span> Full-Stack .NET @ SadTahlil':'git: only <span class="a">git log</span> is installed here',
+ docker:a=>a[0]==='ps'?dockerRows:'docker: only <span class="a">docker ps</span> is installed here',
+ curl:a=>(a[0]||'').includes('skills')?'{\n  <span class="k">"languages"</span>: [<span class="s">"C#"</span>, <span class="s">"ASP.NET Core"</span>, <span class="s">"EF Core"</span>],\n  <span class="k">"data"</span>: [<span class="s">"sql-server"</span>, <span class="s">"postgres"</span>, <span class="s">"mongodb"</span>, <span class="s">"redis"</span>],\n  <span class="k">"infra"</span>: [<span class="s">"docker"</span>, <span class="s">"kubernetes"</span>, <span class="s">"kafka"</span>]\n}':'<span class="r">curl: (7)</span> try <span class="a">curl /api/skills</span>',
+ theme:a=>{if(!a[0]||!THEMES[a[0]])return 'themes: '+Object.keys(THEMES).map(k=>`<span style="color:${THEMES[k]}">${k}</span>`).join('  ');setTheme(a[0]);return `theme → <span style="color:${THEMES[a[0]]}">${a[0]}</span>`},
+ matrix:()=>{matrix();return 'Follow the white rabbit…'},
+ ping:(a,t)=>{const h=esc(a[0]||'milad.dev');[0,1,2,3].forEach(i=>setTimeout(()=>t.print(`64 bytes from ${h}: icmp_seq=${i} ttl=57 time=<span class="g">${rnd(8,25)}.${rnd(0,9)} ms</span>`),(i+1)*350));return `PING ${h} (127.0.0.1)`},
+ top:()=>'  PID  CPU%  MEM%  COMMAND\n'+['node api','postgres','redis-server','nginx','coffee-daemon'].map((c,i)=>`${String(1000+i*137).padStart(5)}  ${String(rnd(1,38)).padStart(4)}  ${String(rnd(2,30)).padStart(4)}  ${c}`).join('\n'),
+ fortune:()=>JOKES[rnd(0,JOKES.length-1)],
+ date:()=>new Date().toString(),
+ echo:a=>esc(a.join(' ')),
+ history:()=>hist.map((h,i)=>`${String(i+1).padStart(3)}  ${esc(h)}`).join('\n')||'(empty)',
+ loadtest:(a,t)=>{if(t.drawer)drawer(false);location.hash='#lab';setTimeout(()=>{if(!lt)$('#lt-go').click()},700);return 'starting load test in /lab …'},
+ secrets:()=>Object.keys(SECRETS).map(k=>found.has(k)?`<span class="g">[x]</span> ${SECRETS[k][0]}`:`<span class="d">[ ] ??? — ${SECRETS[k][1]}</span>`).join('\n')+`\n\n${found.size}/${TOTAL} found`,
+ coffee:()=>{unlock('teapot');return '<span class="r">418 I\'m a teapot</span> ☕'},
+ sudo:(a,t)=>{
+   const s=a.join(' ');
+   if(s==='hire milad'){unlock('hire');setTimeout(()=>{if(t.drawer)drawer(false);location.hash='#contact'},900);return '<span class="g">[sudo]</span> permission granted ✔\nOpening <a href="#contact">POST /contact</a> …'}
+   if(s.startsWith('rm'))return cmds.rm(a.slice(1),t);
+   return '<span class="r">guest is not in the sudoers file.</span> This incident will be reported.'},
+ rm:(a,t)=>{
+   if(a.join(' ').includes('-rf')&&a.includes('/')){
+     ['removing /usr …','removing /var/lib/postgresql …','removing /home/milad …'].forEach((l,i)=>setTimeout(()=>t.print(`<span class="r">${l}</span>`),i*300));
+     setTimeout(()=>{document.body.classList.add('crash');setTimeout(()=>document.body.classList.remove('crash'),700);t.print('…just kidding. Read-only filesystem 😉')},1000);
+     return 'rm: deleting everything…'}
+   return 'rm: permission denied'},
+ clear:(a,t)=>{t.out.innerHTML='';return null},
+ exit:(a,t)=>{if(t.drawer){drawer(false);return null}return 'nowhere to go — you are home.'}
+};
+/* ---- overlays: snake + crash ---- */
+let snk=null;
+function closeOv(){const o=$('#ov');o.className='ov';o.innerHTML='';if(snk){clearInterval(snk.iv);removeEventListener('keydown',snk.kd,true);snk=null}}
+$('#ov').onclick=e=>{if(e.target.id==='ov'&&snk)closeOv()};
+function snake(){
+  closeOv();document.activeElement&&document.activeElement.blur();
+  const o=$('#ov');o.className='ov on';
+  o.innerHTML='<div class="gbox"><div class="gh"><span>snake.exe — eat the <span class="a">●</span> packets</span><span id="ssc">score 0</span></div><canvas id="sc2" width="320" height="320"></canvas><div class="gh d"><span>arrows / WASD</span><span>Esc quit</span></div></div>';
+  const c=$('#sc2'),x=c.getContext('2d'),N=20,S=16,col=getComputedStyle(document.documentElement).getPropertyValue('--green');
+  let b=[{x:10,y:10},{x:9,y:10},{x:8,y:10}],dir={x:1,y:0},nd=dir,ap={x:15,y:10},score=0,dead=false;
+  const MV={arrowup:[0,-1],w:[0,-1],arrowdown:[0,1],s:[0,1],arrowleft:[-1,0],a:[-1,0],arrowright:[1,0],d:[1,0]};
+  const kd=e=>{const k=e.key.toLowerCase(),m=MV[k];
+    if(m){e.preventDefault();e.stopImmediatePropagation();if(m[0]!==-dir.x||m[1]!==-dir.y)nd={x:m[0],y:m[1]}}
+    else if(k==='escape')closeOv();
+    else if(k==='enter'&&dead){closeOv();snake()}};
+  addEventListener('keydown',kd,true);
+  const iv=setInterval(()=>{
+    dir=nd;const h={x:b[0].x+dir.x,y:b[0].y+dir.y};
+    if(h.x<0||h.y<0||h.x>=N||h.y>=N||b.some(s=>s.x===h.x&&s.y===h.y)){
+      dead=true;clearInterval(iv);x.fillStyle='rgba(0,0,0,.7)';x.fillRect(0,0,320,320);
+      x.fillStyle='#ff6b6b';x.font='bold 20px monospace';x.fillText('500 GAME OVER',72,160);
+      x.font='12px monospace';x.fillStyle='#c9d4e0';x.fillText('Enter retry · Esc quit',84,185);return}
+    b.unshift(h);
+    if(h.x===ap.x&&h.y===ap.y){score++;$('#ssc').textContent='score '+score;if(score>=3)unlock('snake');
+      do{ap={x:rnd(0,N-1),y:rnd(0,N-1)}}while(b.some(s=>s.x===ap.x&&s.y===ap.y))}else b.pop();
+    x.fillStyle='#0b1016';x.fillRect(0,0,320,320);
+    x.fillStyle='#ffb454';x.beginPath();x.arc(ap.x*S+8,ap.y*S+8,5,0,7);x.fill();
+    x.fillStyle=col;b.forEach((s,i)=>{x.globalAlpha=i?.75:1;x.fillRect(s.x*S+1,s.y*S+1,S-2,S-2)});x.globalAlpha=1;
+  },110);
+  snk={iv,kd};
+}
+function crash(){
+  closeOv();const o=$('#ov');o.className='ov on';
+  o.innerHTML='<div class="gbox crashbox"><h3 class="r">502 Bad Gateway</h3><pre id="cl"></pre><div class="bar"><i id="cb" style="width:0"></i></div></div>';
+  const L=['api.service: main process killed <span class="r">(SIGKILL)</span>','nginx: upstream prematurely closed connection','healthcheck: <span class="r">3/3 failed</span>','systemd: restarting api.service (1/3) …','api.service: started in <span class="a">412ms</span>','healthcheck: <span class="g">200 OK</span>'];
+  L.forEach((l,i)=>setTimeout(()=>{$('#cl').insertAdjacentHTML('beforeend',l+'\n');$('#cb').style.width=((i+1)/L.length*100)+'%'},(i+1)*550));
+  setTimeout(()=>{closeOv();unlock('crash');toast('✅ <b>service recovered</b> — auto-restart works')},L.length*550+900);
+}
+const DB={
+ projects:[['name','type','year'],['Keycloak.Net','open-source SDK','OSS'],['Asyncify.Net','open-source middleware','OSS'],['Crowdnest.io','solo MVP','MVP']],
+ skills:[['name','level'],['csharp',95],['aspnet-core',95],['sql-server',90],['postgres',82],['mongodb',80],['kafka',80],['docker',85],['kubernetes',65]],
+ experience:[['company','role','years'],['Houshmand Farayand Raya','Senior Software Engineer','2026-now'],['Gapfilm','Senior .NET Full-Stack','2025-2026'],['Xaniis','Senior .NET Backend','2024-2025'],['GreenCity','Team Lead / Senior','2021-2024'],['SadTahlil','Full-Stack .NET','2016-2021']]
+};
+function table(r){const w=r[0].map((_,i)=>Math.max(...r.map(x=>String(x[i]).length)));const ln=x=>' '+x.map((c,i)=>String(c).padEnd(w[i])).join(' │ ');
+  return '<span class="g">'+ln(r[0])+'</span>\n'+w.map(n=>'─'.repeat(n+2)).join('┼')+'\n'+r.slice(1).map(ln).join('\n')+`\n<span class="d">(${r.length-1} rows)</span>`}
+Object.assign(cmds,{
+ snake:(a,t)=>{if(t.drawer)drawer(false);snake();return 'starting snake…'},
+ sql:a=>{const q=a.join(' ');
+   if(!q)return 'usage: <span class="a">sql SELECT * FROM projects</span>\n<span class="d">tables: projects, skills, experience</span>';
+   if(/drop|delete|update|insert|truncate|alter/i.test(q))return '<span class="r">ERROR:</span> permission denied — role "guest" is read-only';
+   const m=q.match(/select\s+(.+?)\s+from\s+(\w+)/i);
+   if(!m)return '<span class="r">ERROR:</span> syntax error. try <span class="a">sql SELECT * FROM projects</span>';
+   const t=DB[m[2].toLowerCase()];if(!t)return `<span class="r">ERROR:</span> relation "${esc(m[2])}" does not exist`;
+   unlock('sql');return /count\(\*\)/i.test(m[1])?table([['count'],[t.length-1]]):table(t)},
+ kill:a=>{if(a.join(' ').includes('-9')&&a.some(x=>/api|node|server/.test(x))){crash();return 'sending SIGKILL …'}return 'usage: kill -9 &lt;process&gt;'},
+ hack:(a,t)=>{['scanning ports …','bypassing firewall …','injecting payload …','decrypting mainframe …'].forEach((s,i)=>setTimeout(()=>t.print(`<span class="g">[${'█'.repeat((i+1)*3)}${'░'.repeat(12-(i+1)*3)}]</span> ${s}`),(i+1)*500));
+   setTimeout(()=>t.print('<span class="g">ACCESS GRANTED</span> … just kidding. This is a portfolio. 😄'),2700);return '<span class="d">initiating…</span>'}
+});
+/* click → floating status code */
+const CODES=[['200 OK','g'],['201 Created','g'],['204 No Content','b'],['301 Moved','b'],['304 Not Modified','b'],['404 Not Found','a'],['418 Teapot','a'],['500 Oops','r']];
+addEventListener('click',e=>{if(e.target.closest('input,textarea,.drawer,.ov'))return;const [s,c]=CODES[rnd(0,CODES.length-1)],p=document.createElement('div');
+  p.className='pop '+c;p.textContent=s;p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';document.body.appendChild(p);setTimeout(()=>p.remove(),1000)});
+/* packet flight on project Send */
+$$('.proj .try').forEach(b=>b.addEventListener('click',()=>{const s=[...b.closest('.proj').querySelectorAll('.arch span')];
+  s.forEach((el,i)=>setTimeout(()=>{s.forEach(x=>x.classList.remove('hot'));el.classList.add('hot')},i*130))}));
+cmds.close=cmds.exit;cmds.ll=a=>cmds.ls(['-a']);cmds.pwd=()=>'/home/guest';cmds.ls['x']=0;
+const NAMES=Object.keys(cmds);
+
+function makeTerm(out,input,form,isDrawer){
+  const t={out,input,drawer:isDrawer,hi:0};
+  t.print=h=>{const d=document.createElement('div');d.innerHTML=h;out.appendChild(d);out.scrollTop=out.scrollHeight};
+  t.run=raw=>{
+    const line=raw.trim();if(!line)return;
+    hist.push(line);t.hi=hist.length;
+    t.print(`<span class="g">guest@milad:~$</span> ${esc(line)}`);
+    const p=line.split(/\s+/),c=p[0].toLowerCase(),f=cmds[c];
+    if(typeof f==='function'){const r=f(p.slice(1),t);if(r)t.print(r)}
+    else t.print(`<span class="r">command not found:</span> ${esc(c)} — try <span class="a">help</span>`);
+  };
+  form.onsubmit=e=>{e.preventDefault();t.run(input.value);input.value=''};
+  input.onkeydown=e=>{
+    if(e.key==='ArrowUp'){if(t.hi>0)input.value=hist[--t.hi];e.preventDefault()}
+    else if(e.key==='ArrowDown'){t.hi=Math.min(t.hi+1,hist.length);input.value=hist[t.hi]||'';e.preventDefault()}
+    else if(e.key==='Tab'){
+      e.preventDefault();const p=input.value.split(' ');
+      const pool=p.length===1?NAMES:({cd:Object.keys(ROUTES),cat:Object.keys(FILES),theme:Object.keys(THEMES),open:['keycloak.net','asyncify.net','crowdnest.io'],ls:['projects','-a']})[p[0]]||[];
+      const w=p[p.length-1],m=pool.filter(n=>n.startsWith(w)&&!n.startsWith('.')||n===w||(w.startsWith('.')&&n.startsWith(w)));
+      if(m.length===1){p[p.length-1]=m[0];input.value=p.join(' ')+(p.length===1?' ':'')}
+      else if(m.length>1)t.print(m.join('  '));
+    }
+    else if(e.key==='`'&&isDrawer){e.preventDefault();drawer(false)}
+    else if(e.key==='l'&&e.ctrlKey){e.preventDefault();out.innerHTML=''}
+  };
+  return t;
+}
+const pageTerm=makeTerm($('#out'),$('#cmd'),$('#tf'),false);
+const drTerm=makeTerm($('#dout'),$('#dcmd'),$('#df'),true);
+pageTerm.print('Welcome to <span class="g">milad-shell</span> 1.0. Type <span class="a">help</span> to begin. <span class="d">(Tab completes, ↑ recalls)</span>');
+drTerm.print('Welcome to <span class="g">milad-shell</span>. This terminal works <span class="a">everywhere</span> — try <span class="a">cd lab</span>, <span class="a">theme violet</span> or <span class="a">help</span>.');
+$$('.chip').forEach(b=>b.onclick=()=>pageTerm.run(b.dataset.c));
+
+const dr=$('#drawer');
+function drawer(o){const open=o===undefined?!dr.classList.contains('open'):o;dr.classList.toggle('open',open);if(open)setTimeout(()=>$('#dcmd').focus(),200)}
+$('#tbtn').onclick=()=>drawer();$('#hterm').onclick=()=>drawer(true);$('#dclose').onclick=()=>drawer(false);
+$('#sc').onclick=()=>{drawer(true);drTerm.run('secrets')};
+addEventListener('keydown',e=>{
+  const tg=e.target,typing=/INPUT|TEXTAREA/.test(tg.tagName);
+  if(e.key==='`'&&!typing){e.preventDefault();drawer()}
+  else if(e.key==='Escape')drawer(false);
+});
+
+/* ---------- konami ---------- */
+const KON=['arrowup','arrowup','arrowdown','arrowdown','arrowleft','arrowright','arrowleft','arrowright','b','a'];let ki=0;
+addEventListener('keydown',e=>{
+  if(/INPUT|TEXTAREA/.test(e.target.tagName))return;
+  ki=(e.key.toLowerCase()===KON[ki])?ki+1:(e.key.toLowerCase()===KON[0]?1:0);
+  if(ki===KON.length){ki=0;unlock('konami');matrix()}
+});
+
+/* ---------- status dot: 5 clicks → debug mode ---------- */
+let dc=0,dt;$('#dot').onclick=()=>{dc++;clearTimeout(dt);dt=setTimeout(()=>dc=0,2500);
+  if(dc>=5){dc=0;const on=document.body.classList.toggle('debug');unlock('debug');toast(on?'🐞 debug mode <b>ON</b> — layout exposed':'🐞 debug mode off')}};
+
+/* ---------- small hidden things ---------- */
+$('#cof').onclick=()=>{unlock('teapot');toast('☕ <b>418</b> I\'m a teapot')};
+const warn=bootEl.children[5];if(warn){warn.style.cursor='pointer';warn.onclick=()=>{unlock('teapot');toast('☕ refilled. <b>418</b> I\'m a teapot')}}
+console.log('%c> hello, fellow dev 👋','color:#6dffb0;font:700 16px monospace');
+console.log('%cPress ` for the terminal. There are 12 secrets. Konami helps.','color:#6b7a8c;font:12px monospace');
+
+/* ---------- motion ---------- */
+const glow=$('#glow');
+addEventListener('pointermove',e=>{glow.style.transform=`translate(${e.clientX-200}px,${e.clientY-200}px)`},{passive:true});
+
+function scramble(el){const t=el.textContent,ch='!<>-_\\/[]{}=+*^?#';let f=0;
+  const iv=setInterval(()=>{el.textContent=[...t].map((c,i)=>i<f/2?c:ch[rnd(0,ch.length-1)]).join('');if(++f>t.length*2){el.textContent=t;clearInterval(iv)}},35)}
+function countUp(b){if(b.dataset.done)return;b.dataset.done=1;
+  const m=b.textContent.match(/^([\d.]+)(.*)$/);if(!m)return;
+  const n=parseFloat(m[1]),dec=(m[1].split('.')[1]||'').length,t0=performance.now();
+  (function f(t){const p=Math.min((t-t0)/1000,1),e=1-Math.pow(1-p,3);b.textContent=(n*e).toFixed(dec)+m[2];if(p<1)requestAnimationFrame(f)})(t0)}
+const rv=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;
+  e.target.classList.add('in');rv.unobserve(e.target);
+  if(e.target.tagName==='H2')scramble(e.target);
+  e.target.querySelectorAll('.metrics b').forEach(countUp)}),{threshold:.12});
+$$('main section > *').forEach(el=>{if(el.closest('#root'))return;el.classList.add('rv');rv.observe(el)});
+
+const roles=['APIs that scale.','databases that behave.','queues that never lose a message.','systems that sleep well at night.'];
+let ri=0,ci=0,del=false;
+(function tick(){const w=roles[ri];$('#role').textContent=w.slice(0,ci);
+  if(!del&&ci<w.length){ci++;setTimeout(tick,55)}else if(!del){del=true;setTimeout(tick,1500)}
+  else if(ci>0){ci--;setTimeout(tick,22)}else{del=false;ri=(ri+1)%roles.length;setTimeout(tick,300)}})();
+
+$$('.arch').forEach((a,k)=>{const s=[...a.querySelectorAll('span')];let i=0;
+  setInterval(()=>{s.forEach(x=>x.classList.remove('hot'));s[i%s.length].classList.add('hot');i++},520+k*90)});
+
+$$('.proj').forEach(p=>{
+  p.addEventListener('mousemove',e=>{const r=p.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    p.style.transform=`perspective(1000px) rotateX(${-y*2.5}deg) rotateY(${x*2.5}deg)`});
+  p.addEventListener('mouseleave',()=>p.style.transform='');
+});
+
+/* ---------- lab: rate limiter ---------- */
+const CAP=5;let tok=CAP;const tk=$('#tokens');tk.innerHTML='<i></i>'.repeat(CAP);
+const drawTok=()=>[...tk.children].forEach((e,i)=>e.classList.toggle('on',i<tok));drawTok();
+setInterval(()=>{if(tok<CAP){tok++;drawTok()}},2000);
+$('#rlbtn').onclick=()=>{
+  const id=Math.random().toString(36).slice(2,8);
+  if(tok>0){tok--;drawTok();$('#rlout').innerHTML=`<span class="g">HTTP/1.1 200 OK</span>\nX-RateLimit-Remaining: <span class="n">${tok}</span>\nX-Request-Id: ${id}`}
+  else{$('#rlout').innerHTML=`<span class="r">HTTP/1.1 429 Too Many Requests</span>\nRetry-After: <span class="n">2</span>\nX-Request-Id: ${id}`;
+    unlock('limit');tk.classList.add('shake');setTimeout(()=>tk.classList.remove('shake'),300)}
+};
+
+/* ---------- lab: load test ---------- */
+const cv=$('#chart'),cx=cv.getContext('2d'),users=$('#lt-users'),auto=$('#lt-auto');
+let lt=false,inst=1,hot=0,dR=[],dL=[],ltT;
+users.oninput=()=>$('#lt-ul').textContent=users.value;
+auto.onchange=()=>{inst=1;hot=0};
+function drawChart(){
+  const W=cv.width,H=cv.height,cs=getComputedStyle(document.documentElement),g=cs.getPropertyValue('--green'),a=cs.getPropertyValue('--amber');
+  cx.clearRect(0,0,W,H);cx.strokeStyle='#1a222d';cx.lineWidth=1;
+  for(let i=1;i<4;i++){cx.beginPath();cx.moveTo(0,H*i/4);cx.lineTo(W,H*i/4);cx.stroke()}
+  const line=(d,max,col)=>{cx.strokeStyle=col;cx.lineWidth=2;cx.beginPath();d.forEach((v,i)=>{const x=i/79*W,y=H-8-Math.min(v/max,1)*(H-16);i?cx.lineTo(x,y):cx.moveTo(x,y)});cx.stroke()};
+  line(dR,4000,g);line(dL,1000,a);
+  cx.font='11px monospace';cx.fillStyle=g;cx.fillText('— rps',8,14);cx.fillStyle=a;cx.fillText('— latency',58,14);
+}
+function step(){
+  const U=+users.value,cap=400*inst,demand=U*2,util=demand/cap,rps=Math.min(demand,cap);
+  let lat=18/(1-Math.min(util,.96)*.95);if(util>1)lat+=Math.min(1500,(util-1)*900);lat=Math.min(lat,2000);
+  if(auto.checked){if(util>.8&&inst<8){hot++;if(hot>=2){inst++;hot=0}}else if(util<.3&&inst>1){hot--;if(hot<=-8){inst--;hot=0}}else hot=0}
+  if(auto.checked&&inst>=4)unlock('scale');
+  dR.push(rps);dL.push(lat);if(dR.length>80){dR.shift();dL.shift()}
+  const err=util>1?Math.round((1-1/util)*100):0;
+  $('#lt-stat').innerHTML=`rps <span class="g">${Math.round(rps)}</span> · p95 <span class="${lat>300?'r':'a'}">${Math.round(lat)}ms</span> · instances <span class="b">${inst}</span> · errors <span class="${err?'r':'g'}">${err}%</span>${err?' — <span class="r">503 Service Unavailable</span>':''}`;
+  drawChart();
+}
+drawChart();
+$('#lt-go').onclick=()=>{
+  lt=!lt;$('#lt-go').textContent=lt?'■ Stop':'▶ Start';
+  if(lt)ltT=setInterval(step,300);else{clearInterval(ltT);inst=1;hot=0}
+};
+
+/* contact */
+$('#cf').onsubmit=e=>{
+  e.preventDefault();
+  const body={name:$('#n').value,email:$('#e').value,message:$('#m').value};
+  const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  $('#cr').innerHTML='<span class="d">sending…</span>';
+  setTimeout(()=>{
+    $('#cr').innerHTML=`<span class="g">HTTP/1.1 201 Created</span>\n{\n  <span class="k">"ok"</span>: <span class="n">true</span>,\n  <span class="k">"ticket"</span>: <span class="s">"#${rnd(1000,9999)}"</span>,\n  <span class="k">"to"</span>: <span class="s">"${esc(body.name)}"</span>,\n  <span class="k">"message"</span>: <span class="s">"Thanks! I'll reply within 24h."</span>\n}`;
+    // swap in your real address / form backend:
+    location.href='mailto:miladrivandi73@gmail.com?subject='+encodeURIComponent('Hello from '+body.name)+'&body='+encodeURIComponent(body.message+'\n\n'+body.email);
+  },500);
+};
+</script>
+</body>
+</html>
